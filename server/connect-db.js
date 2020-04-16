@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 
-const url = `mongodb://localhost:27017/contImprovementDB`;
+const url = 'mongodb://localhost:27017/contImprovementDB';
 
-const db = null;
+let db = null;
 
-export async function connectDB(){
+const connectDB = async () => {
   if (db) return db;
-  mongoose.connect(url, {useNewUrlParser: true});
+  mongoose.connect(url, { useNewUrlParser: true });
   db = mongoose.connection;
   return db;
-}
+};
+
+export default connectDB;

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "babel-node server/index"
+    "server": "babel-node server/index",
+    "eslint": "eslint --init"
   },
   "keywords": [],
   "author": "",
@@ -16,8 +17,9 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@babel/register": "^7.9.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -27,6 +29,8 @@
     "md5": "^2.2.1",
     "mongodb": "^3.5.6",
     "mongoose": "^5.9.9",
-    "uuid": "^7.0.3"
+    "uuid": "^7.0.3",
+    "express": "^4.17.1",
+    "cors": "^2.8.5"
   }
 }

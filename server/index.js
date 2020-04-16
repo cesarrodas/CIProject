@@ -9,14 +9,14 @@ const port = 3000;
 
 app.use(
   cors(),
-  bodyParser.urlencoded({extended: true}),
-  bodyParser.json()
+  bodyParser.urlencoded({ extended: true }),
+  bodyParser.json(),
 );
 
 console.log(process.env.JWT_KEY);
 
-app.get("/", (req, res) => {
-  res.send("Hello world from new server");
+app.get('/', (req, res) => {
+  res.send('Hello world from new server');
 });
 
 app.listen(port, () => {

@@ -1,27 +1,31 @@
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import md5 from 'md5';
-import { connectDB } from './connect-db'; 
+import connectDB from './connect-db';
 
-import { User } from './Schemas/userSchema';
+import User from './Schemas/userSchema';
 
-export const authenticateRoute = (app) => {
+const authenticateRoute = (app) => {
   app.post('/authenticate', async (req, res) => {
-    let { username, password } = req.body;
-    let db = connectDB();
+    const { username, password } = req.body;
+    connectDB();
 
-    let user = User.find({ name: username });
+    const user = User.find({ name: username });
 
-    if(!user) {
-      return res.status(500).send("User and password combination not found.");
+    if (!user) {
+      return res.status(500).send('User and password combination not found.');
     }
 
-    let hash = md5(password);
-    let passwordCorrect = (hash === user.hashedPassword);
+    const hash = md5(password);
+    const passwordCorrect = (hash === user.hashedPassword);
 
-    if(!passwordCorrect){
-      return res.status(500).send("User and password combination not found.");
+    if (!passwordCorrect) {
+      return res.status(500).send('User and password combination not found.');
     }
 
-    
+    const token = 1;
+
+    return res.send({ token });
   });
-}
+};
+
+export default authenticateRoute;

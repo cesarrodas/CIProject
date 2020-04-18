@@ -29,12 +29,32 @@ export const updateUser = async (userData) => {
   });
 };
 
-export const deleteUser = async (userData) => {
+const deleteUser = async (userData) => {
   const db = await connectDB();
   db.once('open', () => {
     User.deleteOne({ id: userData.id }, (err, res) => {
       if (err) { return err; }
       return res;
     });
+  });
+};
+
+export default userRoutes = async (app) => {
+  app.post('/user/new', async (req, res) => {
+    const { user } = req.body;
+    await addUser(user);
+    res.status(203).send();
+  });
+
+  app.post('/user/update', async (req, res) => {
+    const { user } = req.body;
+    await updateUser(user);
+    res.status(200).send();
+  });
+
+  app.post('/user/delete', async (req, res) => {
+    const { user } = req.body;
+    await deleteUser(user);
+    res.status(200).send();
   });
 };
